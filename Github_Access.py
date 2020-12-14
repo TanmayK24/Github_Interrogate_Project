@@ -1,7 +1,7 @@
 from github import Github
 
-# Print User name, id, location, number of followers and following
-# Print Numbe rof repos, repo names, and repo id
+from datetime import datetime
+
 
 def printUserDetails(user):
 	print("~~~~User Details~~~~")
@@ -12,7 +12,12 @@ def printUserDetails(user):
 	print("Number of Public Repos : " + str(user.public_repos))
 
 
-
+def printRepoDetails(user):
+	print("\n~~~~Public Repo Details~~~~")
+	for rep in user.get_repos():
+		print("Name : " +rep.name)
+		print("Created At " + rep.created_at.strftime('%d/%m/%Y'))
+		print("URL : " + rep.url +"\n")
 
 
 def main():
@@ -24,7 +29,7 @@ def main():
 	
 	printUserDetails(user)
 
-	
+	printRepoDetails(user)
 	
 
 main()	
