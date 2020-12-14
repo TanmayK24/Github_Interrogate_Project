@@ -19,6 +19,22 @@ def printRepoDetails(user):
 		print("Created At " + rep.created_at.strftime('%d/%m/%Y'))
 		print("URL : " + rep.url +"\n")
 
+def getFollowerRepo(user):
+	print("\n~~~~Following User's Repos Name~~~~")
+	for rep in user.get_repos():
+		print("Name : " +rep.name)
+		
+
+def printFollowingDetails(user):
+	print("\n~~~~Following~~~~")
+	count = 0
+	for following in user.get_following():
+		count = count + 1
+		print("\n\n" + "Following User Number "+ str(count))
+		printUserDetails(following)
+		getFollowerRepo(following)
+
+
 
 def main():
 	
@@ -27,9 +43,11 @@ def main():
 
 	user = g.get_user()
 	
+
 	printUserDetails(user)
 
 	printRepoDetails(user)
 	
+	printFollowingDetails(user)
 
 main()	
